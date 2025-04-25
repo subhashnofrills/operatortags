@@ -6,6 +6,8 @@ An open standard for AI agent interaction with web content.
 ![Status: Draft](https://img.shields.io/badge/Status-Draft-orange.svg)
 ![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-green.svg)
 
+**Website**: [www.operatortags.com](https://www.operatortags.com)
+
 ## Overview
 
 Operator Tags is an open standard designed to enable AI agents and assistants to safely and effectively interact with web content. By embedding semantic metadata directly into HTML elements, website owners can specify how AI systems should interpret, access, and interact with their content.
@@ -135,6 +137,70 @@ For the complete specification, see [SPECIFICATION.md](SPECIFICATION.md).
 ## Examples
 
 For implementation examples, see [EXAMPLES.md](EXAMPLES.md).
+
+## Testing Tools
+
+We provide several Playwright-based tools to help you test and visualize your implementation of Operator Tags.
+
+### 1. Highlighting Operator Tags
+
+The `playwright-highlight-operator-tags.js` script helps you identify and visualize elements with operator tags on your website.
+
+```bash
+# Install dependencies
+npm install playwright
+
+# Basic usage - highlights all operator tags
+node playwright-highlight-operator-tags.js https://your-website.com
+
+# Filter by specific attribute
+node playwright-highlight-operator-tags.js https://your-website.com operator-access
+
+# Filter by specific attribute and value
+node playwright-highlight-operator-tags.js https://your-website.com operator-access deny
+```
+
+### 2. Interactive Clicking Tool
+
+The `playwright-operator-interactive.js` script allows you to not only highlight elements with operator tags but also interactively click on them to test behavior.
+
+```bash
+# Basic usage with interactive clicking
+node playwright-operator-interactive.js https://your-website.com
+
+# Focus on elements with operator-can-click="true"
+node playwright-operator-interactive.js https://your-website.com operator-can-click true
+
+# Disable interactive mode (highlighting only)
+node playwright-operator-interactive.js https://your-website.com --no-click
+```
+
+This tool provides a control panel with options to:
+- Click the selected element
+- Show all tagged elements
+- Exit interactive mode
+
+### 3. Form Filling Tool
+
+The `playwright-operator-typing.js` script specializes in testing input fields with operator tags, particularly those with the `operator-can-fill` attribute.
+
+```bash
+# Test elements with operator-can-fill="true"
+node playwright-operator-typing.js https://your-website.com
+
+# Test all input elements regardless of operator tags
+node playwright-operator-typing.js https://your-website.com "" ""
+
+# Test elements with specific attributes
+node playwright-operator-typing.js https://your-website.com operator-access allow
+```
+
+This tool provides advanced features:
+- Type custom text into selected elements
+- Fill all fields simultaneously
+- Generate context-aware random data for each field type
+- Clear all fields
+- Submit forms
 
 ## License
 
